@@ -18,11 +18,11 @@ jobs:
 
     - name: Make Scripts Executable
       run: |
-        chmod +x *.cmd
+        chmod +x *.sh
         chmod -R +x files
         
     - name: Run UUP Download Script
-      run: ./uup_download_windows.cmd
+      run: ./uup_download_linux.sh
 
     - name: Build ISO with Bypass
       run: ./convert.sh --bypass-tpm-check --bypass-ram-check --bypass-secureboot-check --iso "Windows11_BYPASS_MULTI.iso"
