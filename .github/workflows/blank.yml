@@ -11,10 +11,10 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Install Required Packages
+    - name: Install Required Tools
       run: |
         sudo apt update
-        sudo apt install -y cabextract wimtools genisoimage p7zip-full
+        sudo apt install -y cabextract wimtools genisoimage p7zip-full chntpw
 
     - name: Make Scripts Executable
       run: chmod +x *.sh
