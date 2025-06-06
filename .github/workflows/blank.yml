@@ -1,0 +1,32 @@
+name: Build Windows 11 ISO with Bypass
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Install Required Packages
+      run: |
+        sudo apt update
+        sudo apt install -y cabextract wimtools genisoimage p7zip-full
+
+    - name: Make Scripts Executable
+      run: chmod +x *.sh
+
+    - name: Run UUP Download Script
+      run: ./uup_download_linux.sh
+
+    - name: Build ISO with Bypass
+      run: ./convert.sh --bypass-tpm-check --bypass-ram-check --bypass-secureboot-check --iso "Windows11_BYPASS_MULTI.iso"
+
+    - name: Upload ISO Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows11_BYPASS_MULTI
+        path: ./Windows11_BYPASS_MULTI.iso
