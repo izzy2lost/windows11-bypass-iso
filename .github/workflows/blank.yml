@@ -17,8 +17,10 @@ jobs:
         sudo apt install -y cabextract wimtools genisoimage p7zip-full chntpw
 
     - name: Make Scripts Executable
-      run: chmod +x *.sh
-
+      run: |
+        chmod +x *.sh
+        chmod -R +x files
+        
     - name: Run UUP Download Script
       run: ./uup_download_linux.sh
 
